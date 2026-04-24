@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import io
+import os
 
 st.title("ML Model Prediction Interface")
 
@@ -17,7 +18,7 @@ st.write("Upload a CSV file to get predictions from the API.")
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
 model_options = {
-    "Spaceship Titanic": "http://127.0.0.1:8000/predict"
+    "Spaceship Titanic": os.environ.get("API_URL", "http://127.0.0.1:8000/predict")
     # Add more models and their API URLs here as needed
 }
 selected_model = st.selectbox(
