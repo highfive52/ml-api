@@ -17,8 +17,10 @@ st.write("Upload a CSV file to get predictions from the API.")
 
 uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
+MODEL_API_URL = st.secrets.get("API_URL", "http://127.0.0.1:8000/predict")
+
 model_options = {
-    "Spaceship Titanic": os.environ.get("API_URL", "http://127.0.0.1:8000/predict")
+    "Spaceship Titanic": MODEL_API_URL
     # Add more models and their API URLs here as needed
 }
 selected_model = st.selectbox(
