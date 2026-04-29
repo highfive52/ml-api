@@ -2,9 +2,15 @@ import requests
 import pandas as pd
 
 ENDPOINTS = [
+    # {
+    #     "name": "Spaceship Titanic",
+    #     "url": "http://127.0.0.1:8000/spaceship-titanic/predict",
+    #     "csv_path": "data/test_spaceship.csv",
+    #     "file_name": "test_spaceship.csv",
+    # },
     {
         "name": "Spaceship Titanic",
-        "url": "http://127.0.0.1:8000/spaceship-titanic/predict",
+        "url": "https://ml-api-ny6y.onrender.com/spaceship-titanic/predict",
         "csv_path": "data/test_spaceship.csv",
         "file_name": "test_spaceship.csv",
     },
