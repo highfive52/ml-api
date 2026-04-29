@@ -15,18 +15,47 @@ This Streamlit app demonstrates how to build an interactive interface that commu
 
 st.write("Upload a CSV file to get predictions from the API.")
 
-uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
 
-MODEL_API_URL = st.secrets.get("API_URL", "http://127.0.0.1:8000/predict")
+# Use Streamlit secrets if present, otherwise default to local URLs
+SPACESHIP_API_URL = st.secrets.get(
+    "SPACESHIP_API_URL", "http://127.0.0.1:8000/spaceship-titanic/predict"
+)
+DIGITS_API_URL = st.secrets.get(
+    "DIGITS_API_URL", "http://127.0.0.1:8000/digit-recognizer/predict"
+)
 
 model_options = {
-    "Spaceship Titanic": MODEL_API_URL
-    # Add more models and their API URLs here as needed
+    "Spaceship Titanic": SPACESHIP_API_URL,
+    "Digit Recognizer": DIGITS_API_URL,
 }
+
+# Track selected model in session state
+if "selected_model" not in st.session_state:
+    st.session_state.selected_model = list(model_options.keys())[0]
+
+
+def on_model_change():
+    st.session_state.uploaded_file_key += 1
+
+
+# Track file_uploader key in session state
+if "uploaded_file_key" not in st.session_state:
+    st.session_state.uploaded_file_key = 0
+
 selected_model = st.selectbox(
-    "Select Prediction Model", options=list(model_options.keys())
+    "Select Prediction Model",
+    options=list(model_options.keys()),
+    index=list(model_options.keys()).index(st.session_state.selected_model),
+    on_change=on_model_change,
+    key="selected_model",
 )
 API_URL = model_options[selected_model]
+
+uploaded_file = st.file_uploader(
+    "Choose a CSV file",
+    type=["csv"],
+    key=f"file_uploader_{st.session_state.uploaded_file_key}",
+)
 
 if uploaded_file is not None:
 
