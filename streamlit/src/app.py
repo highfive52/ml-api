@@ -17,15 +17,9 @@ This Streamlit app demonstrates how to build an interactive interface that commu
 
 st.write("Upload a CSV file to get predictions from the API.")
 
-# Use Streamlit secrets if present, otherwise default to local URLs
-
-# Use cloud secrets if ENV is 'production', otherwise use local URLs
+# Use Streamlit secrets
 SPACESHIP_API_URL = st.secrets.get("SPACESHIP_API_URL")
 DIGITS_API_URL = st.secrets.get("DIGITS_API_URL")
-
-# Debug print for API URL
-st.write("SPACESHIP_API_URL:", SPACESHIP_API_URL)
-st.write("DIGITS_API_URL:", DIGITS_API_URL)
 
 model_options = {
     "Spaceship Titanic": SPACESHIP_API_URL,
@@ -53,7 +47,6 @@ selected_model = st.selectbox(
     key="selected_model",
 )
 API_URL = model_options[selected_model]
-st.write("API_URL:", API_URL)
 
 uploaded_file = st.file_uploader(
     "Choose a CSV file",
