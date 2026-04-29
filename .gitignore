@@ -133,4 +133,5 @@ cython_debug/
 api/data/
 api/docs/
 api/tests/
+streamlit/docs/
 
