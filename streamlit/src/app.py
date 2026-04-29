@@ -17,12 +17,8 @@ st.write("Upload a CSV file to get predictions from the API.")
 
 
 # Use Streamlit secrets if present, otherwise default to local URLs
-SPACESHIP_API_URL = st.secrets.get(
-    "SPACESHIP_API_URL", "http://127.0.0.1:8000/spaceship-titanic/predict"
-)
-DIGITS_API_URL = st.secrets.get(
-    "DIGITS_API_URL", "http://127.0.0.1:8000/digit-recognizer/predict"
-)
+SPACESHIP_API_URL = st.secrets.get("SPACESHIP_API_URL")
+DIGITS_API_URL = st.secrets.get("DIGITS_API_URL")
 
 model_options = {
     "Spaceship Titanic": SPACESHIP_API_URL,
