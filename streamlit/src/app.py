@@ -1,3 +1,5 @@
+from ast import If
+
 import streamlit as st
 import requests
 import pandas as pd
@@ -17,8 +19,14 @@ st.write("Upload a CSV file to get predictions from the API.")
 
 
 # Use Streamlit secrets if present, otherwise default to local URLs
-SPACESHIP_API_URL = st.secrets.get("SPACESHIP_API_URL")
-DIGITS_API_URL = st.secrets.get("DIGITS_API_URL")
+
+# Use cloud secrets if ENV is 'production', otherwise use local URLs
+if st.secrets.get("ENV") == "production":
+    SPACESHIP_API_URL = st.secrets.get("SPACESHIP_API_URL")
+    DIGITS_API_URL = st.secrets.get("DIGITS_API_URL")
+else:
+    SPACESHIP_API_URL = "http://127.0.0.1:8000/spaceship-titanic/predict"
+    DIGITS_API_URL = "http://127.0.0.1:8000/digit-recognizer/predict"
 
 model_options = {
     "Spaceship Titanic": SPACESHIP_API_URL,
