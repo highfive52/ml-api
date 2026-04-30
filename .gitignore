@@ -31,7 +31,6 @@ MANIFEST
 *.spec
 
 # Installer logs
-debug.log
 pip-log.txt
 pip-delete-this-directory.txt
 
@@ -55,8 +54,6 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
 
 # Flask stuff:
 instance/
@@ -66,10 +63,10 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+/docs/_build/
 
 # PyBuilder
-target/
+.target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -87,7 +84,8 @@ Pipfile.lock
 # poetry
 poetry.lock
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+# PDM
+pdm.lock
 __pypackages__/
 
 # Celery stuff
@@ -129,9 +127,5 @@ venv.bak/
 # Cython debug symbols
 cython_debug/
 
-# Miscellaneous
-api/data/
-api/docs/
-api/tests/
-streamlit/docs/
-
+# VS Code
+.vscode/
